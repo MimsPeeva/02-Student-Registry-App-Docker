@@ -14,19 +14,19 @@ pipeline
         stage('Testing')
        {parallel
             {
-                stage('Run Linting')
+                stage('Run npm security')
                 {
                     steps
                     {
-                        bat 'npm run lint'
+                        bat 'npm audit'
                     }
                 }
                
-                stage('Unit Tests')
+                stage('Run UI Tests')
                 {
                     steps
                     {
-                        bat 'npm run test:unit'
+                        bat 'npm test'
                     }
                 }
                 
