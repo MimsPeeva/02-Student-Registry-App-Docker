@@ -11,24 +11,25 @@ pipeline
                 bat 'npm install'
             }
         }
-        stage('Run npm security')
-        {
-            steps
+        stage('Testing')
+       {parallel
             {
-                bat 'npm audit'
-            }
-        }
-        {
-            steps
-            {
-                bat 'npm run test:unit'
-            }
-        }
-        stage('Run UI Tests')
-        {
-            steps
-            {
-                bat 'npm test'
+                stage('Run Linting')
+                {
+                    steps
+                    {
+                        bat 'npm run lint'
+                    }
+                }
+               
+                stage('Unit Tests')
+                {
+                    steps
+                    {
+                        bat 'npm run test:unit'
+                    }
+                }
+                
             }
         }
     }
