@@ -12,7 +12,8 @@ pipeline
             }
         }
         stage('Testing')
-       {parallel
+       {failFast true
+        parallel
             {
                 stage('Run npm security')
                 {
